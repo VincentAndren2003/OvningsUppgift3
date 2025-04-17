@@ -16,7 +16,7 @@ public class Exercise3 {
 	public void importRecordings(String fileName) throws IOException {
 
 	FileReader fileReader = new FileReader(fileName);
-	BufferedReader reader = new BufferedReader(fileReader);
+	BufferedReader reader = new BufferedReader(fileReader); // Osäker på hur BufferedReader funkar, snodde dessa två rader från genomgången av lektionen
 
 	String line = reader.readLine(); // Läser in första siffran som ska representera antalet skivor som en sträng då
 	int totalRecordings = Integer.parseInt(line.trim()); // Förvandlar strängen till en Int
