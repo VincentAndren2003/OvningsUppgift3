@@ -1,16 +1,30 @@
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 public class Exercise3 {
 
 	private final List<Recording> recordings = new ArrayList<>();
 
-	public void exportRecordings(String fileName) {
+	public void exportRecordings(String fileName) throws IOException{
+		FileWriter fileWriter = new FileWriter("recording_output.txt");//väljer fil att skriva i
+		PrintWriter printWriter = new PrintWriter(fileWriter);//gör så vi kan skriva i filen
+		for(int i = 0; i < recordings.size(); i++){//for each istället?
+			Recording r = recordings.get(i);
 
+			printWriter.println("<recording>");
+			printWriter.println("<artist>" + r.getArtist() + "</artist>");
+			printWriter.println("<title>" + r.getTitle() + "</title>");
+			printWriter.println("<year>" + r.getYear() + "</year>");
+			printWriter.println("<genres>");
+			for(String genre : r.getGenre()){
+				printWriter.println("<genre>" + genre + "</genre>");
+			}
+			printWriter.println("</genres>");
+			printWriter.println("</recording>");
+		}
+		printWriter.close();
+		fileWriter.close();
 	}
 
 	public void importRecordings(String fileName) throws IOException {
