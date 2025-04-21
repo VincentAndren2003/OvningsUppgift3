@@ -67,6 +67,7 @@ public class Exercise3 {
 			for(int i = 0; i < postCount; i++){//kör tills det är slut på poster
 				int year = dis.readInt();//tar år från posten
 				int month = dis.readInt();//tar månad från posten
+				int day = dis.readInt();//tar dag
 				double value = dis.readDouble();//tar värdet som posten har
 				int key = year * 100 + month;//skapar nyckeln utan dag
 				//titta mer på denna, förstår ej hur de ger värdet från ovan
