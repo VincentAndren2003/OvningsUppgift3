@@ -58,13 +58,24 @@ public class Exercise3 {
 	}
 }
 
+	public Map<Integer, Double> importSales(String fileName)  {
+		HashMap<Integer, Double> salesMap = new HashMap<>();
+		try (DataInputStream dis = new DataInputStream(new FileInputStream(fileName))){
+			int postCount = dis.readInt();//läser heltalet som säger hur många poster som finns
 
-
-
-
-
-	public Map<Integer, Double> importSales(String fileName) {
-		return null;
+			for(int i = 0; i < postCount; i++){//kör tills det är slut på poster
+				int year = dis.readInt();//tar år från posten
+				int month = dis.readInt();//tar månad från posten
+				int day = dis.readInt();//tar dag från posten
+				double value = dis.readDouble();//tar värdet som posten har
+				int key = year * 100 + month;//skapar nyckeln utan dag
+				//titta mer på denna, förstår ej hur de ger värdet från ovan
+				salesMap.put(key, salesMap.getOrDefault(key, 0.0) + value);
+			}
+		}catch (IOException e){
+			e.printStackTrace();
+		}
+		return salesMap;
 	}
 
 	public List<Recording> getRecordings() {
